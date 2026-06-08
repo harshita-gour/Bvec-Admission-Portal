@@ -100,3 +100,5 @@ java AdmissionPortal
 ---
 
 This project was developed as part of my learning journey in Java and Object-Oriented Programming.
+
+<img width="1366" height="723" alt="Screenshot (199)" src="https://github.com/user-attachments/assets/e2b95053-51e4-43d0-825a-c360b19a4b7f" />
