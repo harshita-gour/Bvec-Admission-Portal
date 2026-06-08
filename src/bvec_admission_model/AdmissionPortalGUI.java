@@ -3,6 +3,8 @@ package bvec_admission_model;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.HashMap;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 
 public class AdmissionPortalGUI extends Frame implements ActionListener {
 
@@ -111,6 +113,29 @@ public class AdmissionPortalGUI extends Frame implements ActionListener {
         setVisible(true);
     }
 
+    public void saveToDatabase(String name, int roll, int semester, String department) {
+
+        try {
+            Connection con = DBConnection.getConnection();
+
+            String query = "INSERT INTO students(name, roll, semester, department) VALUES (?, ?, ?, ?)";
+
+            PreparedStatement pst = con.prepareStatement(query);
+
+            pst.setString(1, name);
+            pst.setInt(2, roll);
+            pst.setInt(3, semester);
+            pst.setString(4, department);
+
+            pst.executeUpdate();
+
+            con.close();
+
+        } catch (Exception e) {
+            output.setText("Database Error: " + e.getMessage());
+        }
+    }
+
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == admitBtn) {
@@ -130,6 +155,8 @@ public class AdmissionPortalGUI extends Frame implements ActionListener {
                     Student s = new Student(name, roll, dept, sem);
 
                     sem.addStudent(s);
+
+                    saveToDatabase(name, roll, semNo, deptName);
 
                     output.setText(
                             "Admission Successful!\n"

@@ -57,37 +57,22 @@ public class AdmissionPortal {
 
                         if (dept.allotSeat()) {
 
-                            Semester sem =
-                                    dept.semesters.get(semNo);
+                            Semester sem = dept.semesters.get(semNo);
 
-                            Student s =
-                                    new Student(
-                                            name,
-                                            roll,
-                                            dept,
-                                            sem
-                                    );
-
+                            Student s = new Student( name, roll,dept,sem);
                             sem.addStudent(s);
 
-                            System.out.println(
-                                    "\nAdmission Successful!\n"
-                            );
-
+                            System.out.println( "\nAdmission Successful!\n");
                             s.display();
 
                         } else {
 
-                            System.out.println(
-                                    "No Seats Available!"
-                            );
+                            System.out.println( "No Seats Available!");
                         }
 
                     } else {
 
-                        System.out.println(
-                                "Invalid Department!"
-                        );
+                        System.out.println("Invalid Department!");
                     }
 
                     break;
